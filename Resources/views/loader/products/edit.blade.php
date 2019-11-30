@@ -5,25 +5,25 @@
 	</div>
 	<div class="brand-card-body">
 		<div class="lead">
-			Disponíveis <br>{{ $product_stock->left }}
+			Disponíveis <br>{{ $product->product_stock->left }}
 		</div>
 		<div class="lead">
-			Retirados <br>{{ $product_stock->taken }}
+			Retirados <br>{{ $product->product_stock->taken }}
 		</div>
 	</div>
 </div>
 
-{{ Form::model($product_stock, ['route' => ['productstock.update', $product_stock], 'method' => 'put']) }}
+{{ Form::model($product->product_stock, ['route' => ['productstock.update', $product->product_stock], 'method' => 'put']) }}
 <div class="row">
 	<div class="col-md-6">
 		<div class="form-group">
 			{{ Form::label('available', 'Total Disponibilizado') }}
-			{{ Form::number('available', $product_stock->available, ['class' => 'form-control']) }}
+			{{ Form::number('available', $product->product_stock->available, ['class' => 'form-control']) }}
 		</div>		
 	</div>
 	<div class="col-md-6">
 		{{ Form::label('date_delivery', 'Data de entrega') }}
-		{{ Form::date('date_delivery', $product_stock->date_delivery, ['class' => 'form-control']) }}
+		{{ Form::date('date_delivery', $product->product_stock->date_delivery, ['class' => 'form-control']) }}
 	</div>
 </div>
 {{ Form::button('<i class="fa fa-save"></i><span>Salvar Estoque</span>', ['class' => 'btn btn-brand btn-primary', 'type' => 'submit']) }}

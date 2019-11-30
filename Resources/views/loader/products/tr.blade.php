@@ -1,1 +1,1 @@
-<td class="align-middle">{{ $product_stock->left }} Unidades</td>
+<td class="align-middle">{{ $product->product_stock->left }} Unidades</td>
