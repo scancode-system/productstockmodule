@@ -1,4 +1,5 @@
 <hr>
+<h4>Estoque</h4>
 <div class="brand-card">
 	<div class="brand-card-header bg-info h-auto py-2">
 		<h2 class="text-white text-capitalize">Informações de Estoque</h2>
