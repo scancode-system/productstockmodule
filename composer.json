@@ -1,5 +1,5 @@
 {
-    "name": "nwidart/productstock",
+    "name": "scancode-system/product-stock-module",
     "description": "",
     "authors": [
         {
@@ -21,5 +21,6 @@
         "psr-4": {
             "Modules\\ProductStock\\": ""
         }
-    }
+    },
+    "type": "laravel-module"
 }
