@@ -38,6 +38,7 @@ class ProductStockServiceProvider extends ServiceProvider
         $this->app->register(ObserverServiceProvider::class);
         $this->app->register(RelationshipServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
+        $this->app->register(ViewComposerServiceProvider::class);
     }
 
 

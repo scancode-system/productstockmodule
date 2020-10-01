@@ -1,31 +1,38 @@
 <hr>
 <h4>Estoque</h4>
+@foreach($stocks as $stock)
 <div class="brand-card">
 	<div class="brand-card-header bg-info h-auto py-2">
-		<h2 class="text-white text-capitalize">Informações de Estoque</h2>
+		<h2 class="text-white text-capitalize">Estoque {{ $stock->alias }}</h2>
 	</div>
 	<div class="brand-card-body">
 		<div class="lead">
-			Disponíveis <br>{{ $product->product_stock->left }}
+			Disponíveis <br>{{ $product->product_stock->left($stock) }}
 		</div>
 		<div class="lead">
-			Retirados <br>{{ $product->product_stock->taken }}
+			Retirados <br>{{ $product->product_stock->taken($stock) }}
 		</div>
 	</div>
 </div>
+@endforeach
 
 {{ Form::model($product->product_stock, ['route' => ['productstock.update', $product->product_stock], 'method' => 'put']) }}
+@foreach($stocks as $stock)
+
 <div class="row">
 	<div class="col-md-6">
 		<div class="form-group">
-			{{ Form::label('available', 'Total Disponibilizado') }}
-			{{ Form::number('available', $product->product_stock->available, ['class' => 'form-control']) }}
+			{{ Form::label($stock->availableFieldName, 'Total Disponibilizado '. $stock->alias) }}
+			{{ Form::number($stock->availableFieldName, $product->product_stock->available($stock), ['class' => 'form-control']) }}
 		</div>		
 	</div>
 	<div class="col-md-6">
-		{{ Form::label('date_delivery', 'Data de entrega') }}
-		{{ Form::date('date_delivery', $product->product_stock->date_delivery, ['class' => 'form-control']) }}
+		{{ Form::label($stock->date_delivery_field_name, 'Data de entrega '. $stock->alias) }}
+		{{ Form::date($stock->date_delivery_field_name, $product->product_stock->dateDelivery($stock), ['class' => 'form-control']) }}
 	</div>
 </div>
+
+@endforeach
 {{ Form::button('<i class="fa fa-save"></i><span>Salvar Estoque</span>', ['class' => 'btn btn-brand btn-primary', 'type' => 'submit']) }}
 {{ Form::close() }}
+

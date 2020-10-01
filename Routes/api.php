@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/productstock', function (Request $request) {
-    return $request->user();
+
+Route::prefix('stocks')->middleware('auth.basic.once')->group(function() {
+	Route::get('', 'Api\StockController@load');
 });
+
+

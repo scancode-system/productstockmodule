@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factory;
 use Modules\Product\Entities\Product;
 use Modules\ProductStock\Entities\ProductStock;
 use Modules\Order\Entities\Item;
-use Modules\ProductStockNowAfter\Entities\ItemProductStock;
+use Modules\ProductStock\Entities\ItemProductStock;
 
 class RelationshipServiceProvider extends ServiceProvider
 {

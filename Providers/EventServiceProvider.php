@@ -19,7 +19,7 @@ class EventServiceProvider extends ServiceProvider
 
 	public function register() 
 	{
-		Event::listen(AfterImportEvent::class, AfterImportProductListener::class);
+		Event::listen(AfterImportEvent::class, AfterImportProductListener::class, 2);
 		Event::listen(ProductLazyEagerLoadingEvent::class, ProductLazyEagerLoadingListener::class);
 	}
 

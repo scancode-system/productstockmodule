@@ -21,8 +21,6 @@ class ProductStockRepository
 	public static function new($product_id){
 		$product_stock = new ProductStock();
 		$product_stock->product_id = $product_id;
-		$product_stock->available = 0;
-		$product_stock->left = 0;
 		$product_stock->save();
 	}
 
