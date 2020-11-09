@@ -18,16 +18,17 @@ class ItemObserver
 	public function creating(Item $item){
 		$product_stock = ProductStock::loadByProduct($item->product);
 		$result = ($product_stock->take($item->qty));
-		$product_stock->save();
 
 		if(!SettingProductStock::loadSetting()->block){ // regra do passar
 			$item->qty = $result->quantities->sum(function ($quantity) {return $quantity;});
 
 			 // fazer o somatorio
 			if($item->qty > 0 && $item->qty < $item->product->min_qty){
+				session()->forget('messages_warning.product_stock_warning');
 				throw new Exception("Este produto não possui em estoque, o mínimo exigido.");
 			}
 		}
+		$product_stock->save();
 		session()->flash($item->order->id.'_new_item_quantities_stock', $result);
 		//dd(session('status'));
 

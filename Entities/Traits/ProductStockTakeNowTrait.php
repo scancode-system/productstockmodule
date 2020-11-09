@@ -19,7 +19,7 @@ trait ProductStockTakeNowTrait {
 			} else {
 				$qty_diff *= -1;
 				$stock = Stock::loadBySufix(str_replace('available', '', $propertie));
-				$this->takingStocks($qty_diff, collect([$stock]));
+				$this->takingStocks($qty_diff, collect([$stock]), $qty_diff);
 			}
 		}
 	}

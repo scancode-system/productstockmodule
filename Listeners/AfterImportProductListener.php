@@ -34,7 +34,6 @@ class AfterImportProductListener
     {
         $data = $event->data();
 
-
         $fields_available = $this->fields($data, 'available_');
         //$fields_date_delivery = $this->fields($data, 'date_delivery_');
 

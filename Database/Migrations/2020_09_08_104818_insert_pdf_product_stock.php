@@ -27,4 +27,4 @@ class InsertPdfProductStock extends Migration
         PdfLayoutRepository::deleteByTitle('Estoque');
     }
 }
- 
+  
