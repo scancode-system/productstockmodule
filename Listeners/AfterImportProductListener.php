@@ -14,6 +14,8 @@ use \PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class AfterImportProductListener
 {
+    public static $schema = true;
+
     /**
      * Create the event listener.
      *
@@ -33,17 +35,22 @@ class AfterImportProductListener
     public function handle($event)
     {
         $data = $event->data();
+        $index = $event->index();
 
         $fields_available = $this->fields($data, 'available_');
         //$fields_date_delivery = $this->fields($data, 'date_delivery_');
 
-        foreach ($fields_available as $field) {
-            $sufix = str_replace('available_', '', $field);
-            if(!Schema::hasColumn('product_stocks', $field)) {
-                Stock::create(['priority' => 1, 'alias' => $sufix]);
+
+        if(AfterImportProductListener::$schema){
+            foreach ($fields_available as $field) {
+                $sufix = str_replace('available_', '', $field);
+                if(!Schema::hasColumn('product_stocks', $field)) {
+                    Stock::create(['priority' => 1, 'alias' => $sufix]);
+                }
             }
+            AfterImportProductListener::$schema = false;
         }
- 
+
 
         try {
             foreach ($fields_available as $field) {
