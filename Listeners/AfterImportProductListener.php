@@ -38,18 +38,14 @@ class AfterImportProductListener
         $index = $event->index();
 
         $fields_available = $this->fields($data, 'available_');
-        //$fields_date_delivery = $this->fields($data, 'date_delivery_');
 
 
-        if(AfterImportProductListener::$schema){
-            foreach ($fields_available as $field) {
-                $sufix = str_replace('available_', '', $field);
-                if(!Schema::hasColumn('product_stocks', $field)) {
-                    Stock::create(['priority' => 1, 'alias' => $sufix]);
-                }
+        /*foreach ($fields_available as $priority => $field) {
+            $sufix = str_replace('available_', '', $field);
+            if(!Schema::hasColumn('product_stocks', $field)) {
+                Stock::create(['priority' => $priority, 'alias' => $sufix]);
             }
-            AfterImportProductListener::$schema = false;
-        }
+        }*/
 
 
         try {
@@ -73,6 +69,9 @@ class AfterImportProductListener
             });        
 
         $product_stock = $event->product()->product_stock;
+        /*if(is_null($product_stock)){
+            dd($event->product());
+        }*/
         $product_stock->updateAvailables($available_fields);
         $product_stock->updateDates($dates_fields->toArray());
         $product_stock->save();
