@@ -35,7 +35,7 @@ class AfterImportProductListener
     public function handle($event)
     {
         $data = $event->data();
-        $index = $event->index();
+        //$index = $event->index();
 
         $fields_available = $this->fields($data, 'available_');
 
