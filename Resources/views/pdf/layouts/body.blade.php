@@ -66,7 +66,7 @@
 			<td class="border-bottom border-dark text-center p-2">@currency($item->price_net)</td>
 			<td class="border-bottom border-dark text-center p-2">{{ $item->item_product_stock->qty($stock) }}</td>
 			<td class="border-bottom border-dark text-center p-2">@currency($item->item_product_stock->total($stock))</td>
-			<td class="border-bottom border-right border-dark text-center p-2">{{ $item->item_product_stock->dateDelivery($stock) ?? 'N/A' }}</td>
+			<td class="border-bottom border-right border-dark text-center p-2">{{ $item->item_product_stock->dateDelivery($stock)? \Carbon\Carbon::parse($item->item_product_stock->dateDelivery($stock))->format('m/Y'):'N/A' }}</td>
 		</tr> 
 		@endforeach
 	</tbody>
