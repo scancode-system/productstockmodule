@@ -112,10 +112,10 @@ class ProductsExport implements FromCollection, WithStrictNullComparison, Should
         $bodyStock = collect([]);
         foreach (Stock::orderBy('priority')->get() as $stock) {
             $bodyStock = $bodyStock->merge([
-                $product->product_stock->{$stock->available_field},
+                $product->product_stock->available($stock),
                 'qty_sold'.$stock->sufix => 0,
-                $product->product_stock->{$stock->left_field},
-                $product->product_stock->{$stock->date_delivery_field}, 
+                $product->product_stock->left($stock),
+                $product->product_stock->dateDelivery($stock), 
                 'total_gross'.$stock->sufix => 0,
                 'total_discount_value'.$stock->sufix => 0, 
                 'total_addition_value'.$stock->sufix => 0, 
